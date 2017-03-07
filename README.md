@@ -9,8 +9,9 @@ More information to come!
   1. See my blog post on Pi setup (coming soon!).
   2. Install dependencies: `sudo apt-get install -y python-picamera python-yaml imagemagick`
   3. Download or clone this repository to your Pi.
-  4. Configure the timelapse by modifying values in `config.yml`.
-  5. In the Terminal, `cd` into this project directory and run `python timelapse.py`.
+  4. Copy `example.config.yml` to `config.yml`.
+  5. Configure the timelapse by modifying values in `config.yml`.
+  6. In the Terminal, `cd` into this project directory and run `python timelapse.py`.
 
 After the capture is completed, the images will be stored in a directory named `series-[current date]`. If you have `create_gif` set to `True` in `config.yml`, the Pi will also generate an animated gif immediately following the conclusion of the capture.
 
