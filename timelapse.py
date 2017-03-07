@@ -21,7 +21,22 @@ try:
     create_timestamped_dir(dir)
 
     # Set camera resolution.
-    camera.resolution = (config['image']['width'], config['image']['height'])
+    if config['resolution']:
+        camera.resolution = (config['resolution']['width'], config['resolution']['height'])
+
+    # Set ISO.
+    camera.iso = config['iso']
+    sleep(2)
+
+    # Set shutter speed and sleep to allow camera to lock in exposure.
+    if config['shutter_speed']:
+        camera.shutter_speed = config['shutter_speed']
+        camera.exposure_mode = 'off'
+
+    # Set white balance.
+    if config['white_balance']:
+        camera.awb_mode = 'off'
+        camera.awb_gains = (config['white_balance']['red_gain'], config['white_balance']['blue_gain'])
 
     # Capture images in series.
     for i in range(config['total_images']):

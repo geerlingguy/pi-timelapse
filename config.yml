@@ -1,14 +1,33 @@
 ---
-# Image dimensions.
-image:
-  width: 853
-  height: 480
+##################
+# Basic Settings #
+##################
+
+# Image resolution Set to empty object (`{ }`) to use default/full resolution.
+resolution: { }
+  # width: 480
+  # height: 270
 
 # The number of images to capture.
-total_images: 10
+total_images: 1
 
 # The interval between captures (in seconds).
 interval: 1
 
 # Whether to create an animated gif after capturing the time-lapse images.
-create_gif: True
+create_gif: False
+
+#####################
+# Advanced settings #
+#####################
+
+# ISO value. 0 = auto, 100-1600 for manual ISO.
+iso: 0
+
+# Shutter speed. 0 = auto, else value in microseconds (e.g. 1/30s ~ 33333μs).
+shutter_speed: 0
+
+# White balance. Set to empty object (`{ }`) to use auto white balance.
+white_balance: { }
+  # red_gain: 1.3
+  # blue_gain: 1.75
