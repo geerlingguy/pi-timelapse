@@ -3,7 +3,9 @@ import errno
 import os
 from datetime import datetime
 from time import sleep
+import yaml
 
+config = yaml.safe_load(open("config.yml"))
 camera = PiCamera()
 
 def create_timestamped_dir(dir):
@@ -19,15 +21,16 @@ try:
     create_timestamped_dir(dir)
 
     # Set camera resolution.
-    camera.resolution = (720, 480)
+    camera.resolution = (config['image']['width'], config['image']['height'])
 
     # Capture images in series.
-    for i in range(10):
+    for i in range(config['total_images']):
         camera.capture(dir + '/image{0:05d}.jpg'.format(i))
-        sleep(1)
+        sleep(config['interval'])
 
 finally:
     camera.close()
 
-    # Create an animated gif.
-    # os.system('convert -delay 10 -loop 0 ' + dir + '/image*.jpg ' + dir + '-timelapse.gif')
+    # Create an animated gif (Requires ImageMagick).
+    if config['create_gif']:
+        os.system('convert -delay 10 -loop 0 ' + dir + '/image*.jpg ' + dir + '-timelapse.gif')
