@@ -9,13 +9,13 @@ resolution: { }
   # height: 270
 
 # The number of images to capture.
-total_images: 1
+total_images: 10
 
 # The interval between captures (in seconds).
 interval: 1
 
 # Whether to create an animated gif after capturing the time-lapse images.
-create_gif: False
+create_gif: True
 
 #####################
 # Advanced settings #
