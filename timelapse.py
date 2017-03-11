@@ -49,3 +49,7 @@ finally:
     # Create an animated gif (Requires ImageMagick).
     if config['create_gif']:
         os.system('convert -delay 10 -loop 0 ' + dir + '/image*.jpg ' + dir + '-timelapse.gif')
+
+    # Create a video (Requires avconv - which is basically ffmpeg).
+    if config['create_video']:
+        os.system('avconv -framerate 20 -i ' + dir + '/image%05d.jpg -vf format=yuv420p ' + dir + '/timelapse.mp4')

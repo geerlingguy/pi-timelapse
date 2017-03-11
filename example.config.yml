@@ -14,8 +14,8 @@ total_images: 10
 # The interval between captures (in seconds).
 interval: 1
 
-# Whether to create an animated gif after capturing the time-lapse images.
-create_gif: True
+# Whether to create an video after capturing the time-lapse images.
+create_video: False
 
 #####################
 # Advanced settings #
