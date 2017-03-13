@@ -41,7 +41,7 @@ try:
     # Capture images in series.
     for i in range(config['total_images']):
         camera.capture(dir + '/image{0:05d}.jpg'.format(i))
-        sleep(config['interval'])
+        sleep(config['interval'] - 2)
 
 finally:
     camera.close()
