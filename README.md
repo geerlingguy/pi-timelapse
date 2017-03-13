@@ -67,6 +67,8 @@ Most photographers are familiar with the fractional values for common shutter sp
 
 | Fractional Shutter Speed | µs       |
 | ------------------------ | -------- |
+| 6 seconds (max)          | 6000000  |
+| 1 second                 | 1000000  |
 | 1/8                      | 125000   |
 | 1/15                     | 66666    |
 | 1/30                     | 33333    |
