@@ -2,11 +2,13 @@
 
 There are a ton of different Time-Lapse scripts and apps built for the Raspberry Pi, but I wanted to make a more customized setup for my own needs.
 
-More information to come!
+Here's an example time-lapse video I recorded of cirrus clouds in the sky outside my window (click to view on YouTube):
+
+<p align="center"><a href="https://www.youtube.com/watch?v=mThXDhkj0aA"><img src="https://img.youtube.com/vi/mThXDhkj0aA/0.jpg" alt="Cirrus clouds on a sunny day - Raspberry Pi Zero W time-lapse by Jeff Geerling" /></a></p>
 
 ## Usage
 
-  1. See my blog post on Pi setup (coming soon!).
+  1. See my blog post for an in-depth overview: [Raspberry Pi Zero W as a headless time-lapse camera](https://www.jeffgeerling.com/blog/2017/raspberry-pi-zero-w-headless-time-lapse-camera).
   2. Install dependencies: `sudo apt-get install -y python-picamera python-yaml`
   3. Download or clone this repository to your Pi.
   4. Copy `example.config.yml` to `config.yml`.
