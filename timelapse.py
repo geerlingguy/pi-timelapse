@@ -48,9 +48,7 @@ def capture_image():
         # Set a timer to take another picture at the proper interval after this
         # picture is taken.
         if (image_number < (config['total_images'] - 1)):
-            thread = threading.Timer(config['interval'], capture_image)
-            thread.daemon=True
-            thread.start()
+            thread = threading.Timer(config['interval'], capture_image).start()
 
         # Start up the camera.
         camera = PiCamera()
@@ -64,15 +62,12 @@ def capture_image():
         if (image_number < (config['total_images'] - 1)):
             image_number += 1
         else:
-            print '\nTime lapse capture complete! Press Ctrl-C to continue.\n'
+            print '\nTime-lapse capture complete!\n'
             # TODO: This doesn't pop user into the except block below :(.
             sys.exit()
 
-        # Needed to allow manual KeyboardInterrupt between captures.
-        while True: sleep(100)
-
     except KeyboardInterrupt, SystemExit:
-        print '\nRendering artifacts; timelapse.py will exit when complete.\n'
+        print '\nTime-lapse capture cancelled.\n'
 
 # Create directory based on current timestamp.
 dir = os.path.join(os.getcwd(), 'series-' + datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
@@ -81,10 +76,13 @@ create_timestamped_dir(dir)
 # Kick off the capture process.
 capture_image()
 
+# TODO: These may not get called after the end of the threading process...
 # Create an animated gif (Requires ImageMagick).
 if config['create_gif']:
+    print '\nCreating animated gif.\n'
     os.system('convert -delay 10 -loop 0 ' + dir + '/image*.jpg ' + dir + '-timelapse.gif')
 
 # Create a video (Requires avconv - which is basically ffmpeg).
 if config['create_video']:
+    print '\nCreating video.\n'
     os.system('avconv -framerate 20 -i ' + dir + '/image%05d.jpg -vf format=yuv420p ' + dir + '/timelapse.mp4')
