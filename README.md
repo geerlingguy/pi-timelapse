@@ -46,6 +46,7 @@ For a more pleasing timelapse, it's best to lock in manual settings for exposure
 The most common and useful Pi Camera resolutions (assuming a V2 camera module—V1 modules have different optimal resolutions) are listed below:
 
 | Size (width x height) | Aspect | Common name            |
+| --------------------- | ------ | ---------------------- |
 | 3280 x 2464           | 4:3    | (max resolution)       |
 | 1920 x 1080           | 16:9   | 1080p                  |
 | 1280 x 720            | 16:9   | 720p (2x2 binning)     |
