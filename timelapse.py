@@ -29,7 +29,7 @@ def set_camera_options(camera):
     # Set shutter speed.
     if config['shutter_speed']:
         camera.shutter_speed = config['shutter_speed']
-        # Sleep to prevent black images.
+        # Sleep to allow the shutter speed to take effect correctly.
         sleep(1)
         camera.exposure_mode = 'off'
 
@@ -57,8 +57,7 @@ def capture_image():
         camera = PiCamera()
         set_camera_options(camera)
 
-        # Sleep to allow camera to calibrate, then take a picture.
-        sleep(1)
+        # Capture a picture.
         camera.capture(dir + '/image{0:05d}.jpg'.format(image_number))
         camera.close()
 
