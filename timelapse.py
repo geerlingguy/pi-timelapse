@@ -23,11 +23,14 @@ def set_camera_options(camera):
         camera.resolution = (config['resolution']['width'], config['resolution']['height'])
 
     # Set ISO.
-    camera.iso = config['iso']
+    if config['iso']:
+        camera.iso = config['iso']
 
     # Set shutter speed.
     if config['shutter_speed']:
         camera.shutter_speed = config['shutter_speed']
+        # Sleep to prevent black images.
+        sleep(1)
         camera.exposure_mode = 'off'
 
     # Set white balance.
