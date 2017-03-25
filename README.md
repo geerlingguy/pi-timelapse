@@ -98,6 +98,12 @@ White balance values on the Raspberry Pi camera are set by adjusting the red and
 
 Note: These values will be updated over time as I find more time to calibrate my Pi camera against a few DSLRs and other devices which are much more accurate! Please file an issue if you can help make these mappings better, or find a nicer way to adjust calibrations rather than a `red_gain` and `blue_gain` value.
 
+### Rotation
+
+Depending on the placement of your camera, the picture taken could be upside down. To correct this, the
+camera offers a possibility to rotate the images by `90`, `180` or `270` degrees. Use `0` to not rotate
+the images.
+
 ## License
 
 MIT License.

@@ -38,6 +38,10 @@ try:
         camera.awb_mode = 'off'
         camera.awb_gains = (config['white_balance']['red_gain'], config['white_balance']['blue_gain'])
 
+    # Set camera rotation
+    if config['rotation']:
+        camera.rotation = config['rotation']
+
     # Capture images in series.
     for i in range(config['total_images']):
         camera.capture(dir + '/image{0:05d}.jpg'.format(i))
