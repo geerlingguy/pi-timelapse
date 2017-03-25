@@ -34,3 +34,6 @@ shutter_speed: 0
 white_balance: { }
   # red_gain: 1.3
   # blue_gain: 1.75
+
+# Rotate the images taken by the camera. Possible value are 0, 90, 180 or 270
+rotation: 0
