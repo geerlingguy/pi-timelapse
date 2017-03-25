@@ -93,7 +93,7 @@ White balance values on the Raspberry Pi camera are set by adjusting the red and
 | Cloudy sky / overcast | 6500K                      | 1.5      | 1.2       |
 | Daylight              | 5500K                      | TODO     | TODO      |
 | Fluorescent / 'cool'  | 4000K                      | 1.3      | 1.75      |
-| Incandescent / 'warm' | 2700K                      | TODO     | TODO      |
+| Incandescent / 'warm' | 2700K                      | 1.25     | 1.9       |
 | Candle                | <2000K                     | TODO     | TODO      |
 
 Note: These values will be updated over time as I find more time to calibrate my Pi camera against a few DSLRs and other devices which are much more accurate! Please file an issue if you can help make these mappings better, or find a nicer way to adjust calibrations rather than a `red_gain` and `blue_gain` value.
