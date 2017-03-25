@@ -100,9 +100,7 @@ Note: These values will be updated over time as I find more time to calibrate my
 
 ### Rotation
 
-Depending on the placement of your camera, the picture taken could be upside down. To correct this, the
-camera offers a possibility to rotate the images by `90`, `180` or `270` degrees. Use `0` to not rotate
-the images.
+Depending on the placement of your camera, the picture taken could be upside down. To correct this, set `rotation` to a value of `0` (no rotation), or `90`, `180` or `270` degrees to rotate the image.
 
 ## License
 
