@@ -4,9 +4,14 @@ import os
 from datetime import datetime
 from time import sleep
 import yaml
+import sys
 
 config = yaml.safe_load(open("config.yml"))
 camera = PiCamera()
+
+if config['interval'] < 2:
+    print "Inverval must be 2 or greater"
+    sys.exit()
 
 def create_timestamped_dir(dir):
     try:
@@ -17,8 +22,9 @@ def create_timestamped_dir(dir):
 
 try:
     # Create directory based on current timestamp.
-    dir = os.path.join(os.getcwd(), 'series-' + datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
+    dir = os.path.join(os.getcwd(), config['directory'] + '/series-' + datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
     create_timestamped_dir(dir)
+    print "Directory: " + dir
 
     # Set camera resolution.
     if config['resolution']:
@@ -45,7 +51,9 @@ try:
     # Capture images in series.
     for i in range(config['total_images']):
         camera.capture(dir + '/image{0:05d}.jpg'.format(i))
+        print "Captured image " + str(i+1) + " of " + str(config['total_images'])
         sleep(config['interval'] - 2)
+	
 
 finally:
     camera.close()
