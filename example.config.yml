@@ -15,10 +15,10 @@ total_images: 10
 interval: 5
 
 # Whether to create an animated gif after capturing the time-lapse images.
-create_gif: True
+create_gif: False
 
 # Whether to create an video after capturing the time-lapse images.
-create_video: True
+create_video: False
 
 # Directory
 directory: timelapse
