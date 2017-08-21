@@ -10,6 +10,7 @@ import yaml
 config = yaml.safe_load(open(os.path.join(sys.path[0], "config.yml")))
 image_number = 0
 
+
 def create_timestamped_dir(dir):
     try:
         os.makedirs(dir)
@@ -17,10 +18,14 @@ def create_timestamped_dir(dir):
         if e.errno != errno.EEXIST:
             raise
 
+
 def set_camera_options(camera):
     # Set camera resolution.
     if config['resolution']:
-        camera.resolution = (config['resolution']['width'], config['resolution']['height'])
+        camera.resolution = (
+            config['resolution']['width'],
+            config['resolution']['height']
+        )
 
     # Set ISO.
     if config['iso']:
@@ -36,13 +41,17 @@ def set_camera_options(camera):
     # Set white balance.
     if config['white_balance']:
         camera.awb_mode = 'off'
-        camera.awb_gains = (config['white_balance']['red_gain'], config['white_balance']['blue_gain'])
+        camera.awb_gains = (
+            config['white_balance']['red_gain'],
+            config['white_balance']['blue_gain']
+        )
 
     # Set camera rotation
     if config['rotation']:
         camera.rotation = config['rotation']
 
     return camera
+
 
 def capture_image():
     try:
@@ -72,7 +81,10 @@ def capture_image():
         print '\nTime-lapse capture cancelled.\n'
 
 # Create directory based on current timestamp.
-dir = os.path.join(sys.path[0], 'series-' + datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
+dir = os.path.join(
+    sys.path[0],
+    'series-' + datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+)
 create_timestamped_dir(dir)
 
 # Kick off the capture process.
@@ -82,9 +94,9 @@ capture_image()
 # Create an animated gif (Requires ImageMagick).
 if config['create_gif']:
     print '\nCreating animated gif.\n'
-    os.system('convert -delay 10 -loop 0 ' + dir + '/image*.jpg ' + dir + '-timelapse.gif')
+    os.system('convert -delay 10 -loop 0 ' + dir + '/image*.jpg ' + dir + '-timelapse.gif')  # noqa
 
 # Create a video (Requires avconv - which is basically ffmpeg).
 if config['create_video']:
     print '\nCreating video.\n'
-    os.system('avconv -framerate 20 -i ' + dir + '/image%05d.jpg -vf format=yuv420p ' + dir + '/timelapse.mp4')
+    os.system('avconv -framerate 20 -i ' + dir + '/image%05d.jpg -vf format=yuv420p ' + dir + '/timelapse.mp4')  # noqa

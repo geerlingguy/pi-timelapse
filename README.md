@@ -1,5 +1,7 @@
 # Raspberry Pi Time-Lapse App
 
+[![Build Status](https://travis-ci.org/geerlingguy/pi-timelapse.svg?branch=master)](https://travis-ci.org/geerlingguy/pi-timelapse)
+
 There are a ton of different Time-Lapse scripts and apps built for the Raspberry Pi, but I wanted to make a more customized setup for my own needs.
 
 Here's an example time-lapse video I recorded of cirrus clouds in the sky outside my window (click to view on YouTube):
