@@ -7,7 +7,7 @@ from datetime import datetime
 from time import sleep
 import yaml
 
-config = yaml.safe_load(open("config.yml"))
+config = yaml.safe_load(open(os.path.join(sys.path[0], "config.yml")))
 image_number = 0
 
 def create_timestamped_dir(dir):
