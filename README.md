@@ -17,6 +17,22 @@ Here's an example time-lapse video I recorded of cirrus clouds in the sky outsid
 
 After the capture is completed, the images will be stored in a directory named `series-[current date]`.
 
+## Run on Raspberry Pi Startup and manage timelapses via Systemd
+
+This project includes a Systemd unit file that allows the timelapse script to be managed like any other service on the system (e.g. start with `systemctl start timelapse`, stop with `systemctl stop timelapse`).
+
+To use this feature, do the following:
+
+  1. In your `config.yml`, set the `total_images` variable to a large number—as large as you want, within Python's limitations. This way you won't start a timelapse and it stops after very few images are taken.
+  1. Copy the `timelapse.service` file into the Systemd unit file location: `sudo cp timelapse.service /etc/systemd/system/timelapse.service`.
+  1. Reload the Systemd daemon (`sudo systemctl daemon-reload`) to load in the new unit file.
+  1. Choose how you want to manage the `timelapse` service:
+    1. **To start a timelapse at system boot**: `sudo systemctl enable timelapse` (`disable` to turn off, `is-enabled` to check current status)
+    1. **To start a timelapse at any time**: `sudo systemctl start timelapse` (if one is not already running)
+    1. **To stop a timelapse in progress**: `sudo systemctl stop timelapse`
+
+Note: You should not try running a timelapse via the Python script directly _and_ via Systemd at the same time. This could do weird things, and is not a typical mode of operation!
+
 ## Creating animated gifs or videos
 
 ### Animated gifs

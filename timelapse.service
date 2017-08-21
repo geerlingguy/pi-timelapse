@@ -1,0 +1,16 @@
+[Unit]
+Description=Start the Pi Timelapse script.
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/pi/pi-timelapse/timelapse.py
+RemainAfterExit=true
+ExecStop=/usr/bin/pkill -f timelapse.py
+StandardOutput=journal
+StandardError=journal
+User=pi
+Group=pi
+
+[Install]
+WantedBy=multi-user.target
