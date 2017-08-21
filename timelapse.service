@@ -1,0 +1,14 @@
+[Unit]
+Description=Start the Pi Timelapse script.
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python /home/pi/pi-timelapse/timelapse.py
+RemainAfterExit=true
+ExecStop=kill $(ps aux | grep '/[u]sr/bin/python /home/pi/pi-timelapse/timelapse.py' | awk '{print $2}')
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -35,6 +35,22 @@ If you have `create_video` set to `True` in `config.yml`, the Pi will also gener
 
 > Note: Video generation can take a very long time on slower Pis, like the Pi Zero, A+, or original A or B.
 
+## Run on Raspberry Pi Startup and manage timelapses via Systemd
+
+This project includes a Systemd unit file that allows the timelapse script to be managed like any other service on the system (e.g. start with `systemctl start timelapse`, stop with `systemctl stop timelapse`).
+
+To use this feature, do the following:
+
+  1. In your `config.yml`, set the `total_images` variable to a large number—as large as you want, within Python's limitations. This way you won't start a timelapse and it stops after very few images are taken.
+  1. Copy the `timelapse.service` file into the Systemd unit file location: `sudo cp timelapse.service /etc/systemd/system/timelapse.service`.
+  1. Reload the Systemd daemon (`systemctl daemon-reload`) to load in the new unit file.
+  1. Choose how you want to manage the `timelapse` service:
+    1. **To start a timelapse at system boot**: `systemctl enable timelapse`
+    1. **To start a timelapse at any time**: `systemctl start timelapse` (if one is not already running)
+    1. **To stop a timelapse in progress**: `systemctl stop timelapse`
+
+Note: You should not try running a timelapse via the Python script directly _and_ via Systemd at the same time. This could do weird things, and is not a typical mode of operation!
+
 ## Manual Settings
 
 For a more pleasing timelapse, it's best to lock in manual settings for exposure and white balance (otherwise the video has a lot of inconsistency from frame to frame). This project allows almost complete control over manual exposure settings through variables in `config.yml`, and below are listed some rules of thumb for your own settings.
