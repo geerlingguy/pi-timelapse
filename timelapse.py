@@ -10,9 +10,6 @@ import yaml
 config = yaml.safe_load(open(os.path.join(sys.path[0], "config.yml")))
 image_number = 0
 
-# Initialize the camera global.
-camera = PiCamera()
-
 def create_timestamped_dir(dir):
     try:
         os.makedirs(dir)
@@ -57,6 +54,7 @@ def capture_image():
             thread = threading.Timer(config['interval'], capture_image).start()
 
         # Start up the camera.
+        camera = PiCamera()
         set_camera_options(camera)
 
         # Capture a picture.
