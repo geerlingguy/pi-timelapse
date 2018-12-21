@@ -94,12 +94,12 @@ capture_image()
 # TODO: These may not get called after the end of the threading process...
 # Create an animated gif (Requires ImageMagick).
 if config['create_gif']:
-    command = 'convert -delay 10 -loop 0 ' + dir + '/image*.jpg ' + dir + '-timelapse.gif' # noqa
+    command = 'convert -delay 10 -loop 0 ' + dir + '/image*.jpg ' + dir + '-timelapse.gif'  # noqa
     print '\nCreating animated gif: ' + command + '\n'
     os.system(command)
 
 # Create a video (Requires avconv - which is basically ffmpeg).
 if config['create_video']:
-    command = 'avconv -framerate 20 -i ' + dir + '/image%05d.jpg -vf format=yuv420p ' + dir + '/timelapse.mp4' # noqa
+    command = 'avconv -framerate 20 -i ' + dir + '/image%05d.jpg -vf format=yuv420p ' + dir + '/timelapse.mp4'  # noqa
     print '\nCreating video: ' + command + '\n'
     os.system(command)
