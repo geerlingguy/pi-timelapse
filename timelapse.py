@@ -94,7 +94,7 @@ capture_image()
 # Create an animated gif (Requires ImageMagick).
 if config['create_gif']:
     print '\nCreating animated gif.\n'
-    os.system('convert -delay 10 -loop 0 ' + dir + '/image*.jpg ' + dir + '-timelapse.gif')  # noqa
+    os.system('convert -delay 10 -loop 0 ' + dir + '/image*.jpg ' + dir + '/timelapse.gif')  # noqa
 
 # Create a video (Requires avconv - which is basically ffmpeg).
 if config['create_video']:
