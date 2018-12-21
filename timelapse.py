@@ -2,13 +2,12 @@ from picamera import PiCamera
 import errno
 import os
 import sys
-import threading
+import time
 from datetime import datetime
 from time import sleep
 import yaml
 
 config = yaml.safe_load(open(os.path.join(sys.path[0], "config.yml")))
-image_number = 0
 
 
 def create_timestamped_dir(dir):
@@ -55,27 +54,20 @@ def set_camera_options(camera):
 
 def capture_image():
     try:
-        global image_number
-
-        # Set a timer to take another picture at the proper interval after this
-        # picture is taken.
-        if (image_number < (config['total_images'] - 1)):
-            thread = threading.Timer(config['interval'], capture_image).start()
-
         # Start up the camera.
         camera = PiCamera()
         set_camera_options(camera)
 
-        # Capture a picture.
-        camera.capture(dir + '/image{0:05d}.jpg'.format(image_number))
-        camera.close()
+        for image_number in range(config['total_images']):
+            # Capture a picture.
+            camera.capture(dir + '/image{0:05d}.jpg'.format(image_number))
 
-        if (image_number < (config['total_images'] - 1)):
-            image_number += 1
-        else:
-            print '\nTime-lapse capture complete!\n'
-            # TODO: This doesn't pop user into the except block below :(.
-            sys.exit()
+            # Sleep after taking a picture for the proper interval
+            time.sleep(config['interval'])
+
+        # Done using the camera.
+        camera.close()
+        print '\nTime-lapse capture complete!\n'
 
     except KeyboardInterrupt, SystemExit:
         print '\nTime-lapse capture cancelled.\n'
