@@ -53,6 +53,18 @@ If you have `create_video` set to `True` in `config.yml`, the Pi will also gener
 
 > Note: Video generation can take a very long time on slower Pis, like the Pi Zero, A+, or original A or B.
 
+### Manually Compiling Videos with `ffmpeg`
+
+You can use `ffmpeg` on other platforms (or `avconv` on the Pi) to put together image sequences after the fact. For example, to take a sequence like `image00001.jpg` to `image00248.jpg` and generate an MP4 video:
+
+    ffmpeg -framerate 20 -i image%05d.jpg -vf format=yuv420p timelapse.mp4
+
+And if you wanted to start the video in the middle of the sequence (e.g. instead of starting at `image00001.jpg`, start at `image00024.jpg`), you can pass the `-start_number` option:
+
+    ffmpeg -framerate 20 -start_number 634 -i image%05d.jpg -vf format=yuv420p timelapse.mp4
+
+These commands assume you're inside the folder containing all the images, and output a file named `timelapse.mp4` in the same directory.
+
 ## Manual Settings
 
 For a more pleasing timelapse, it's best to lock in manual settings for exposure and white balance (otherwise the video has a lot of inconsistency from frame to frame). This project allows almost complete control over manual exposure settings through variables in `config.yml`, and below are listed some rules of thumb for your own settings.
