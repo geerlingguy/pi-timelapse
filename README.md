@@ -8,6 +8,8 @@ Here's an example time-lapse video I recorded of cirrus clouds in the sky outsid
 
 <p align="center"><a href="https://www.youtube.com/watch?v=mThXDhkj0aA"><img src="https://img.youtube.com/vi/mThXDhkj0aA/0.jpg" alt="Cirrus clouds on a sunny day - Raspberry Pi Zero W time-lapse by Jeff Geerling" /></a></p>
 
+There are many other examples in my <a href="https://www.youtube.com/playlist?list=PL2_OBreMn7Fpviykd5nnuEjrymmF8fDc7">Timelapses</a> playlist on YouTube.
+
 ## Usage
 
   1. See my blog post for an in-depth overview: [Raspberry Pi Zero W as a headless time-lapse camera](https://www.jeffgeerling.com/blog/2017/raspberry-pi-zero-w-headless-time-lapse-camera).
