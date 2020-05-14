@@ -19,6 +19,14 @@ Here's an example time-lapse video I recorded of cirrus clouds in the sky outsid
 
 After the capture is completed, the images will be stored in a directory named `series-[current date]`.
 
+> If you get a message like `Camera is not enabled. Try running 'sudo raspi-config'`, you have to enable the camera in the Pi's configuration:
+>
+> 1. Run `sudo raspi-config`
+> 2. Go to 'Interfacing Options'
+> 3. Select 'Camera'
+> 4. Select 'Yes' for enabling the camera
+> 5. Select 'Finish' in the main menu and then 'Yes' to reboot the Pi
+
 ## Run on Raspberry Pi Startup and manage timelapses via Systemd
 
 This project includes a Systemd unit file that allows the timelapse script to be managed like any other service on the system (e.g. start with `systemctl start timelapse`, stop with `systemctl stop timelapse`).
