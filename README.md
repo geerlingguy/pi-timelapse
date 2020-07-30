@@ -12,7 +12,18 @@ There are many other examples in my <a href="https://www.youtube.com/playlist?li
 
 ## Usage
 
-  1. See my blog post for an in-depth overview: [Raspberry Pi Zero W as a headless time-lapse camera](https://www.jeffgeerling.com/blog/2017/raspberry-pi-zero-w-headless-time-lapse-camera).
+> For an in-depth overview, see my blog post [Raspberry Pi Zero W as a headless time-lapse camera](https://www.jeffgeerling.com/blog/2017/raspberry-pi-zero-w-headless-time-lapse-camera).
+
+First, make sure the camera interface is enabled—if you don't, you'll see the message `Camera is not enabled. Try running 'sudo raspi-config'`:
+
+  1. Run `sudo raspi-config`
+  2. Go to 'Interfacing Options'
+  3. Select 'Camera'
+  4. Select 'Yes' for enabling the camera
+  5. Select 'Finish' in the main menu and then 'Yes' to reboot the Pi
+
+Now, set up this timelapse app on your Raspberry Pi:
+
   2. Install dependencies: `sudo apt-get install -y git python-picamera python-yaml`
   3. Clone this repository to your Pi: `git clone https://github.com/geerlingguy/pi-timelapse.git`
   4. Copy `example.config.yml` to `config.yml`.
@@ -20,14 +31,6 @@ There are many other examples in my <a href="https://www.youtube.com/playlist?li
   6. In the Terminal, `cd` into this project directory and run `python timelapse.py`.
 
 After the capture is completed, the images will be stored in a directory named `series-[current date]`.
-
-> If you get a message like `Camera is not enabled. Try running 'sudo raspi-config'`, you have to enable the camera in the Pi's configuration:
->
-> 1. Run `sudo raspi-config`
-> 2. Go to 'Interfacing Options'
-> 3. Select 'Camera'
-> 4. Select 'Yes' for enabling the camera
-> 5. Select 'Finish' in the main menu and then 'Yes' to reboot the Pi
 
 ## Run on Raspberry Pi Startup and manage timelapses via Systemd
 
