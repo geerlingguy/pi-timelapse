@@ -67,6 +67,7 @@ def capture_image():
         set_camera_options(camera)
 
         # Capture a picture.
+        print '\nCapture picture: ' + str(image_number) + '\n'
         camera.capture(dir + '/image{0:05d}.jpg'.format(image_number))
         camera.close()
 
@@ -93,10 +94,12 @@ capture_image()
 # TODO: These may not get called after the end of the threading process...
 # Create an animated gif (Requires ImageMagick).
 if config['create_gif']:
-    print '\nCreating animated gif.\n'
-    os.system('convert -delay 10 -loop 0 ' + dir + '/image*.jpg ' + dir + '-timelapse.gif')  # noqa
+    command = 'convert -delay 10 -loop 0 ' + dir + '/image*.jpg ' + dir + '-timelapse.gif'  # noqa
+    print '\nCreating animated gif: ' + command + '\n'
+    os.system(command)
 
 # Create a video (Requires avconv - which is basically ffmpeg).
 if config['create_video']:
-    print '\nCreating video.\n'
-    os.system('avconv -framerate 20 -i ' + dir + '/image%05d.jpg -vf format=yuv420p ' + dir + '/timelapse.mp4')  # noqa
+    command = 'avconv -framerate 20 -i ' + dir + '/image%05d.jpg -vf format=yuv420p ' + dir + '/timelapse.mp4'  # noqa
+    print '\nCreating video: ' + command + '\n'
+    os.system(command)
