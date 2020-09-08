@@ -12,13 +12,16 @@ resolution: { }
 total_images: 10
 
 # The interval between captures (in seconds).
-interval: 1
+interval: 5
 
 # Whether to create an animated gif after capturing the time-lapse images.
 create_gif: False
 
 # Whether to create an video after capturing the time-lapse images.
 create_video: False
+
+# Directory
+directory: timelapse
 
 #####################
 # Advanced settings #
