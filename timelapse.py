@@ -77,8 +77,10 @@ def capture_image():
             # TODO: This doesn't pop user into the except block below :(.
             sys.exit()
 
-    except KeyboardInterrupt, SystemExit:
-        print '\nTime-lapse capture cancelled.\n'
+    except (KeyboardInterrupt):
+        print ("\nTime-lapse capture cancelled.\n")
+    except (SystemExit):
+        print ("\nTime-lapse capture stopped.\n")
 
 #Initialize the path for files to be saved
 dir_path = (str(config['dir_path']))
