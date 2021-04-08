@@ -108,4 +108,4 @@ if config['create_gif']:
 # Create a video (Requires avconv - which is basically ffmpeg).
 if config['create_video']:
     print ('\nCreating video.\n')
-    os.system('avconv -framerate 20 -i ' + dir + '/image%05d.jpg -vf format=yuv420p ' + dir + '/timelapse.mp4')  # noqa
+    os.system('avconv -framerate 20 -i ' + dir + '/image%08d.jpg -vf format=yuv420p ' + dir + '/timelapse.mp4')  # noqa
