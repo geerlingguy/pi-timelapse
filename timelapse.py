@@ -73,7 +73,7 @@ def capture_image():
         if (image_number < (config['total_images'] - 1)):
             image_number += 1
         else:
-            print '\nTime-lapse capture complete!\n'
+            print ('\nTime-lapse capture complete!\n')
             # TODO: This doesn't pop user into the except block below :(.
             sys.exit()
 
@@ -90,6 +90,7 @@ dir = os.path.join(
     sys.path[0],
     str(dir_path) +'series-' + datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 )
+# Create directory with current time stamp
 create_timestamped_dir(dir)
 
 # Print where the files will be saved
@@ -101,10 +102,10 @@ capture_image()
 # TODO: These may not get called after the end of the threading process...
 # Create an animated gif (Requires ImageMagick).
 if config['create_gif']:
-    print '\nCreating animated gif.\n'
+    print ('\nCreating animated gif.\n')
     os.system('convert -delay 10 -loop 0 ' + dir + '/image*.jpg ' + dir + '-timelapse.gif')  # noqa
 
 # Create a video (Requires avconv - which is basically ffmpeg).
 if config['create_video']:
-    print '\nCreating video.\n'
+    print ('\nCreating video.\n')
     os.system('avconv -framerate 20 -i ' + dir + '/image%05d.jpg -vf format=yuv420p ' + dir + '/timelapse.mp4')  # noqa
