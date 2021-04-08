@@ -80,12 +80,18 @@ def capture_image():
     except KeyboardInterrupt, SystemExit:
         print '\nTime-lapse capture cancelled.\n'
 
+#Initialize the path for files to be saved
+dir_path = (str(config['dir_path']))
+
 # Create directory based on current timestamp.
 dir = os.path.join(
     sys.path[0],
-    'series-' + datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    str(dir_path) +'series-' + datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 )
 create_timestamped_dir(dir)
+
+# Print where the files will be saved
+print("\nFiles will be saved in: " + str(dir_path) + "\n")
 
 # Kick off the capture process.
 capture_image()
