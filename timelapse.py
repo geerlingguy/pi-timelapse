@@ -67,7 +67,7 @@ def capture_image():
         set_camera_options(camera)
 
         # Capture a picture.
-        camera.capture(dir + '/image{0:08d}.jpg'.format(image_number+1))
+        camera.capture(dir + '/image{0:08d}.jpg'.format(image_number))
         sleep(1)
         camera.close()
 
