@@ -68,7 +68,6 @@ def capture_image():
 
         # Capture a picture.
         camera.capture(dir + '/image{0:08d}.jpg'.format(image_number))
-        sleep(1)
         camera.close()
 
         if (image_number < (config['total_images'] - 1)):
