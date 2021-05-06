@@ -67,25 +67,34 @@ def capture_image():
         set_camera_options(camera)
 
         # Capture a picture.
-        camera.capture(dir + '/image{0:05d}.jpg'.format(image_number))
+        camera.capture(dir + '/image{0:08d}.jpg'.format(image_number))
         camera.close()
 
         if (image_number < (config['total_images'] - 1)):
             image_number += 1
         else:
-            print '\nTime-lapse capture complete!\n'
+            print ('\nTime-lapse capture complete!\n')
             # TODO: This doesn't pop user into the except block below :(.
             sys.exit()
 
-    except KeyboardInterrupt, SystemExit:
-        print '\nTime-lapse capture cancelled.\n'
+    except (KeyboardInterrupt):
+        print ("\nTime-lapse capture cancelled.\n")
+    except (SystemExit):
+        print ("\nTime-lapse capture stopped.\n")
+
+#Initialize the path for files to be saved
+dir_path = (str(config['dir_path']))
 
 # Create directory based on current timestamp.
 dir = os.path.join(
     sys.path[0],
-    'series-' + datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    str(dir_path) +'series-' + datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 )
+# Create directory with current time stamp
 create_timestamped_dir(dir)
+
+# Print where the files will be saved
+print("\nFiles will be saved in: " + str(dir_path) + "\n")
 
 # Kick off the capture process.
 capture_image()
@@ -93,10 +102,10 @@ capture_image()
 # TODO: These may not get called after the end of the threading process...
 # Create an animated gif (Requires ImageMagick).
 if config['create_gif']:
-    print '\nCreating animated gif.\n'
+    print ('\nCreating animated gif.\n')
     os.system('convert -delay 10 -loop 0 ' + dir + '/image*.jpg ' + dir + '-timelapse.gif')  # noqa
 
 # Create a video (Requires avconv - which is basically ffmpeg).
 if config['create_video']:
-    print '\nCreating video.\n'
-    os.system('avconv -framerate 20 -i ' + dir + '/image%05d.jpg -vf format=yuv420p ' + dir + '/timelapse.mp4')  # noqa
+    print ('\nCreating video.\n')
+    os.system('avconv -framerate 20 -i ' + dir + '/image%08d.jpg -vf format=yuv420p ' + dir + '/timelapse.mp4')  # noqa
